@@ -1,0 +1,162 @@
+{
+  "crop_model": {
+    "version": "1.0.0",
+    "algorithm": "RandomForestClassifier",
+    "features": [
+      "N",
+      "P",
+      "K",
+      "temperature",
+      "humidity",
+      "ph",
+      "rainfall"
+    ],
+    "classes": [
+      "apple",
+      "banana",
+      "blackgram",
+      "chickpea",
+      "coconut",
+      "coffee",
+      "cotton",
+      "grapes",
+      "jute",
+      "kidneybeans",
+      "lentil",
+      "maize",
+      "mango",
+      "mothbeans",
+      "mungbean",
+      "muskmelon",
+      "orange",
+      "papaya",
+      "pigeonpeas",
+      "pomegranate",
+      "rice",
+      "watermelon"
+    ],
+    "input_ranges": {
+      "N": {
+        "min": 0,
+        "max": 140,
+        "unit": "mg/kg",
+        "label": "Nitrogen ratio"
+      },
+      "P": {
+        "min": 5,
+        "max": 145,
+        "unit": "mg/kg",
+        "label": "Phosphorus ratio"
+      },
+      "K": {
+        "min": 5,
+        "max": 205,
+        "unit": "mg/kg",
+        "label": "Potassium ratio"
+      },
+      "temperature": {
+        "min": 8.0,
+        "max": 45.0,
+        "unit": "\u00b0C",
+        "label": "Temperature"
+      },
+      "humidity": {
+        "min": 14.0,
+        "max": 100.0,
+        "unit": "%",
+        "label": "Humidity"
+      },
+      "ph": {
+        "min": 3.5,
+        "max": 9.9,
+        "unit": "pH scale (0-14)",
+        "label": "Soil pH"
+      },
+      "rainfall": {
+        "min": 20.0,
+        "max": 300.0,
+        "unit": "mm",
+        "label": "Rainfall"
+      }
+    }
+  },
+  "yield_model": {
+    "version": "1.0.0",
+    "algorithm": "RandomForestRegressor with OneHotEncoding",
+    "supported_states": [
+      "Punjab",
+      "Haryana",
+      "Uttar Pradesh",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Karnataka",
+      "Tamil Nadu",
+      "Andhra Pradesh",
+      "Gujarat",
+      "West Bengal",
+      "Bihar",
+      "Rajasthan"
+    ],
+    "supported_crops": [
+      "Rice",
+      "Wheat",
+      "Maize",
+      "Cotton",
+      "Sugarcane",
+      "Pulses",
+      "Groundnut",
+      "Soybean",
+      "Barley",
+      "Millets"
+    ],
+    "supported_seasons": [
+      "Kharif",
+      "Rabi",
+      "Whole Year",
+      "Summer",
+      "Autumn",
+      "Winter"
+    ],
+    "numeric_features": [
+      "area",
+      "annual_rainfall",
+      "fertilizer_used",
+      "pesticide_used"
+    ],
+    "unit": "Metric Tons / Hectare (t/ha)"
+  },
+  "fertilizer_model": {
+    "version": "1.0.0",
+    "algorithm": "RandomForestClassifier with OneHotEncoding",
+    "supported_soils": [
+      "Black",
+      "Clayey",
+      "Loamy",
+      "Red",
+      "Sandy"
+    ],
+    "supported_crops": [
+      "Barley",
+      "Cotton",
+      "Ground Nuts",
+      "Maize",
+      "Millets",
+      "Oil seeds",
+      "Paddy",
+      "Pulses",
+      "Sugarcane",
+      "Tobacco",
+      "Wheat"
+    ],
+    "fertilizer_categories": [
+      "Urea",
+      "DAP",
+      "14-35-14",
+      "28-28",
+      "17-17-17",
+      "20-20",
+      "10-26-26"
+    ],
+    "dataset_note": "Dataset contains controlled agronomic samples. Always verify recommendations with a physical soil test."
+  }
+}
