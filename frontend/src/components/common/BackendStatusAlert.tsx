@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { AlertTriangle, CheckCircle2, RefreshCw, ServerOff, Terminal } from 'lucide-react';
+
+import { useEffect, useState } from 'react';
+import { AlertTriangle, RefreshCw, ServerOff, Terminal } from 'lucide-react';
 import { api } from '../../services/api';
-import { BackendHealthResponse } from '../../types/dashboard';
+import type { BackendHealthResponse } from '../../types/dashboard';
 
 export const BackendStatusAlert: React.FC = () => {
   const [health, setHealth] = useState<BackendHealthResponse | null>(null);
@@ -10,6 +11,7 @@ export const BackendStatusAlert: React.FC = () => {
 
   const checkStatus = async () => {
     setIsChecking(true);
+
     try {
       const res = await api.checkHealth();
       setHealth(res);
@@ -20,9 +22,18 @@ export const BackendStatusAlert: React.FC = () => {
         version: '1.0.0',
         database: 'disconnected',
         models: {
-          crop_recommendation: { available: false, file: 'crop_model.joblib' },
-          yield_prediction: { available: false, file: 'yield_model.joblib' },
-          fertilizer_recommendation: { available: false, file: 'fertilizer_model.joblib' },
+          crop_recommendation: {
+            available: false,
+            file: 'crop_model.joblib',
+          },
+          yield_prediction: {
+            available: false,
+            file: 'yield_model.joblib',
+          },
+          fertilizer_recommendation: {
+            available: false,
+            file: 'fertilizer_model.joblib',
+          },
         },
       });
     } finally {
@@ -38,7 +49,6 @@ export const BackendStatusAlert: React.FC = () => {
     return null;
   }
 
-  // If everything is healthy, display a clean mini-pill or nothing
   const isAllHealthy =
     health?.status === 'healthy' &&
     health?.models?.crop_recommendation?.available &&
@@ -68,15 +78,17 @@ export const BackendStatusAlert: React.FC = () => {
               <AlertTriangle className="w-5 h-5" />
             )}
           </div>
+
           <div>
             <h4 className="font-semibold text-amber-900 text-sm">
               {health?.status === 'offline'
                 ? 'FastAPI Backend Server Offline'
                 : 'Backend Service Degraded or Model Pending'}
             </h4>
+
             <p className="text-xs text-amber-800 mt-0.5 leading-relaxed">
               {health?.status === 'offline'
-                ? 'The web client cannot reach the AgriSense FastAPI server at http://localhost:8000.'
+                ? 'The web client cannot reach the AgriSense FastAPI server.'
                 : 'Some ML prediction model artifacts are currently pending or uninitialized.'}
             </p>
 
@@ -86,14 +98,19 @@ export const BackendStatusAlert: React.FC = () => {
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-900 underline hover:text-amber-950 cursor-pointer"
               >
                 <Terminal className="w-3.5 h-3.5" />
-                {showInstructions ? 'Hide Setup Command' : 'View Quick Setup Command'}
+                {showInstructions
+                  ? 'Hide Setup Command'
+                  : 'View Quick Setup Command'}
               </button>
+
               <button
                 onClick={checkStatus}
                 disabled={isChecking}
                 className="inline-flex items-center gap-1 text-xs text-amber-800 hover:text-amber-950 ml-3 cursor-pointer"
               >
-                <RefreshCw className={`w-3 h-3 ${isChecking ? 'animate-spin' : ''}`} />
+                <RefreshCw
+                  className={`w-3 h-3 ${isChecking ? 'animate-spin' : ''}`}
+                />
                 Retry Connection
               </button>
             </div>
@@ -103,10 +120,14 @@ export const BackendStatusAlert: React.FC = () => {
 
       {showInstructions && (
         <div className="mt-3 pt-3 border-t border-amber-200/80 text-xs font-mono bg-amber-950 text-amber-100 p-3 rounded-lg overflow-x-auto">
-          <p className="text-amber-300 mb-1 font-sans font-medium">To start the FastAPI backend server:</p>
+          <p className="text-amber-300 mb-1 font-sans font-medium">
+            To start the FastAPI backend server:
+          </p>
           <code>cd backend</code>
           <br />
-          <code>.\venv\Scripts\python.exe -m uvicorn main:app --reload --port 8000</code>
+          <code>
+            .\venv\Scripts\python.exe -m uvicorn main:app --reload --port 8000
+          </code>
         </div>
       )}
     </div>

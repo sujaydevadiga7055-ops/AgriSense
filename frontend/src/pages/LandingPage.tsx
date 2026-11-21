@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/common/Navbar';
@@ -12,12 +13,11 @@ import {
   ArrowRight,
   CheckCircle2,
   Cpu,
-  BarChart3,
   ShieldCheck,
   ChevronRight,
   Database,
   Layers,
-  Leaf
+  Leaf,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -34,7 +34,7 @@ export const LandingPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Headline and Call-to-actions */}
+            {/* Left Column */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <Badge variant="emerald" size="md">
                 <Leaf className="w-3.5 h-3.5 text-emerald-700" />
@@ -54,7 +54,10 @@ export const LandingPage: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                <Link to={isAuthenticated ? '/app/dashboard' : '/register'} className="w-full sm:w-auto">
+                <Link
+                  to={isAuthenticated ? '/app/dashboard' : '/register'}
+                  className="w-full sm:w-auto"
+                >
                   <Button
                     variant="primary"
                     size="lg"
@@ -64,6 +67,7 @@ export const LandingPage: React.FC = () => {
                     {isAuthenticated ? 'Open Farmer Dashboard' : 'Get Started Free'}
                   </Button>
                 </Link>
+
                 <a href="#features" className="w-full sm:w-auto">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto text-base">
                     Explore Features
@@ -88,7 +92,7 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Hero Visual Graphic */}
+            {/* Right Column */}
             <div className="lg:col-span-5 relative">
               <div className="relative mx-auto max-w-md lg:max-w-none bg-gradient-to-tr from-emerald-800 to-green-900 rounded-3xl p-6 sm:p-8 shadow-2xl text-white overflow-hidden border border-emerald-700/50">
                 <div className="absolute top-0 right-0 -mr-16 -mt-16 w-56 h-56 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
@@ -378,7 +382,10 @@ export const LandingPage: React.FC = () => {
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 space-y-6">
-              <h4 className="text-lg font-bold text-emerald-950">Technical & Scientific Integrity</h4>
+              <h4 className="text-lg font-bold text-emerald-950">
+                Technical & Scientific Integrity
+              </h4>
+
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-emerald-100 text-emerald-800 rounded-lg shrink-0 mt-0.5">
